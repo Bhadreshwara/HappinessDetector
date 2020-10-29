@@ -56,3 +56,4 @@ Haar Cascades - "Viola-Jones algorithm uses haar-like features to detect facial 
   # Output
   
       Run .py file and Have Fun!
+      we can also use jupyter lab/ jupyter notebook to run iPython notebook.
