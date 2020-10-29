@@ -8,8 +8,8 @@ import cv2 as cv
 face_cascade = cv.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv.CascadeClassifier('haarcascade_eye.xml')
 smile_cascade = cv.CascadeClassifier('haarcascade_smile.xml')
-#mouth_cascade = cv.CascadeClassifier('Mouth.xml')
-#nose_cascade = cv.CascadeClassifier('Nariz.xml')
+mouth_cascade = cv.CascadeClassifier('Mouth.xml')
+nose_cascade = cv.CascadeClassifier('Nariz.xml')
 
 
 #Defining a function that will do the detections
@@ -25,9 +25,9 @@ def detect(gray, frame):
         smile = smile_cascade.detectMultiScale(roi_gray, 1.8, 25)
         for (sx, sy, sw, sh) in smile:
             cv.rectangle(roi_color,(sx, sy),(sx+sw, sy+sh), (255, 0, 255), 2)
-#        nose = nose_cascade.detectMultiScale(roi_gray, 1.8, 20)
-#        for (nx, ny, nw, nh) in nose:
-#            cv.rectangle(roi_color,(nx, ny),(nx+nw, ny+nh), (255, 0, 0), 2)
+        nose = nose_cascade.detectMultiScale(roi_gray, 1.8, 20)
+        for (nx, ny, nw, nh) in nose:
+            cv.rectangle(roi_color,(nx, ny),(nx+nw, ny+nh), (255, 0, 0), 2)
     return frame
 
 #Doing some Face Recognition with the Webcame
