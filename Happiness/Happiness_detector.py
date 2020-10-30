@@ -10,7 +10,7 @@ eye_cascade = cv.CascadeClassifier('haarcascade_eye.xml')
 smile_cascade = cv.CascadeClassifier('haarcascade_smile.xml')
 mouth_cascade = cv.CascadeClassifier('Mouth.xml')
 nose_cascade = cv.CascadeClassifier('Nariz.xml')
-
+eye_withglasses_cascade = cv.CascadeClassifier('haarcascade_eye_tree_eyeglasses.xml')
 
 #Defining a function that will do the detections
 def detect(gray, frame):
@@ -23,6 +23,10 @@ def detect(gray, frame):
         roi_color = frame[y:y+h, x:x+w]
         cv.putText(roi_color,"Face",(fx, fy), cv.FONT_HERSHEY_SIMPLEX, 0.55, (0, 0, 255), 1)
         eyes = eye_cascade.detectMultiScale(roi_gray, 1.1, 22)
+        for (ex, ey, ew, eh) in eyes:
+            cv.rectangle(roi_color,(ex, ey),(ex+ew, ey+eh), (0, 255, 0), 2)
+            cv.putText(roi_color,"eyes",(ex, ey), cv.FONT_HERSHEY_SIMPLEX, 0.55, (0, 255, 0), 1)     
+        eyes_withgl = eye_withglasses_cascade.detectMultiScale(roi_gray, 1.1, 22)
         for (ex, ey, ew, eh) in eyes:
             cv.rectangle(roi_color,(ex, ey),(ex+ew, ey+eh), (0, 255, 0), 2)
             cv.putText(roi_color,"eyes",(ex, ey), cv.FONT_HERSHEY_SIMPLEX, 0.55, (0, 255, 0), 1)
